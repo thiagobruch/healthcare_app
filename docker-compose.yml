@@ -1,0 +1,20 @@
+# docker-compose.yml
+version: '3.8'
+
+services:
+  web:
+    image: thiagobruch/healthcare-app
+    container_name: healthcare-app
+    ports:
+      - "8013:80"
+    depends_on:
+      - db
+    build:
+      context: .
+      dockerfile: Dockerfile
+  db:
+    image: thiagobruch/healthcare-db
+    container_name: healthcare-db
+    restart: always
+    ports:
+      - "3307:3306"
